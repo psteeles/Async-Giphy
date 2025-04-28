@@ -8,8 +8,10 @@ const endpoint = `https://api.giphy.com/v1/gifs/search?api_key=${process.env.API
 async function getImage(query) {
   let response = await fetch(`${endpoint}&q=${query}`);
   let dataJson = await response.json();
-  let actualUrl = dataJson.data[0].url;
+  let randomResult = Math.floor(Math.random() * dataJson.data.length);
+  let actualUrl = dataJson.data[randomResult].url;
   console.log(actualUrl);
+  console.log(`${endpoint}&q=${query}`);
 }
 
 getImage("monkey");
